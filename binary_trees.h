@@ -4,7 +4,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-struct binary_trees_s
+typedef struct binary_trees_s
 {
     int n;
     struct binary_tree_s *parent;
