@@ -1,6 +1,3 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
 #include "binary_trees.h"
 static int print_t(const binary_tree_t *tree, int offset, int depth, char **s)
 {
@@ -39,6 +36,10 @@ static size_t _height(const binary_tree_t *tree)
 {
     size_t height_l;
     size_t height_r;
+    if (!tree)
+    {
+        return(0);
+    }
 
     height_l = tree->left ? 1 + _height(tree->left) : 0;
     height_r = tree->right ? 1 + _height(tree->right) : 0;
@@ -81,5 +82,5 @@ void binary_tree_print(const binary_tree_t *tree)
         printf("%s\n", s[i]);
         free(s[i]);
      }
-     fre(s);
+     free(s);
 }
