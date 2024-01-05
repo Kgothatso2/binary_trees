@@ -1,10 +1,12 @@
 #ifndef BINARY_TREES_H
 #define BINARY_TREES_H
+
+#include <stddef.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
-typedef struct binary_trees_s
+struct binary_trees_s
 {
     int n;
     struct binary_tree_s *parent;
@@ -15,11 +17,19 @@ typedef struct binary_tree_s binary_tree_t;
 typedef struct binary_tree_s bst_t;
 typedef struct binary_tree_s avl_t;
 typedef struct binary_tree_s heap_t;
+
+typedef struct levelorder_queue_s
+{
+    binary_tree_t *node;
+    struct levelorder_queue_s *next;
+}levelorder_queue_t;
+
+void binary_tree_print(const binary_tree_t *);
     
 binary_tree_t *binary_tree_node(binary_tree_t *parent, int value);
 binary_tree_t *binary_tree_insert_left(binary_tree_t *parent, int value);
 binary_tree_t *binary_tree_insert_right(binary_tree_t *parent, int value);
-void binary_tree_deletion(binary_tree_t *tree);
+void binary_tree_delete(binary_tree_t *tree);
 int binary_tree_is_left(const binary_tree_t *node);
 int binary_tree_is_root(const binary_tree_t *node);
 void binary_tree_preorder(const binary_tree_t *tree, void(*func)(int));
@@ -35,5 +45,9 @@ int binary_tree_is_full(const binary_tree_t *tree);
 int binary_tree_is_perfect(const binary_tree_t *tree);
 binary_tree_t *binary_tree_sibling(binary_tree_t *node);
 binary_tree_t *binary_tree_uncle(binary_tree_t *node);
+static int print_t(const binary_tree_t *tree, int offset, int depth, char **s);
+static size_t _height(const binary_tree_t *tree);
+void binary_tree_print(const binary_tree_t *tree);
+
 
 #endif
